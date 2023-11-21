@@ -1,0 +1,17 @@
+services:
+  portfolio:
+    image: portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
